@@ -1,0 +1,34 @@
+  
+<ion-header >
+  <ion-toolbar>
+   
+      <!-- <div class="form-group form-group-lg">
+        <input type="text" class="form-control" placeholder="Search Here write my photo , other or Imports ..." [(ngModel)]="term">
+      </div> -->
+      <ion-button color="primary" (click)="ClickMyphoto($event)">My Photo</ion-button>
+      <ion-button color="secondary"(click)="ClickImports($event)" >Imports</ion-button>
+      <ion-button color="tertiary" (click)="ClickOthers($event)">Other</ion-button>
+      <ion-button color="tertiary" (click)="getAll()">All</ion-button>
+
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+    <ion-col size="1" 
+      *ngFor="let photo of photoService.photos | filter:term">
+      <ion-img [src]="photo.webviewPath" 
+      (click)="showActionSheet(photo, position)"></ion-img>
+    </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+  
+    <ion-fab-button (click)="addPhotoToGallery()">
+      <ion-icon name="camera"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  
+</ion-content>
